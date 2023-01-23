@@ -20,7 +20,6 @@ class VinylController extends AbstractController
             ['song' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
             ['song' => 'Fantasy', 'artist' => 'Mariah Carey']
         ];
-
         return $this->render('vinyl/homepage.html.twig',[
             'title' => 'Homepage',
             'tracks' => $tracks
@@ -28,12 +27,8 @@ class VinylController extends AbstractController
     }
     #[Route('/browse/{genre}')]
     public function browse(string $genre = null) : Response{
-        if($genre){
-            $response = 'Browse the colection for '.$genre;
-        } else {
-            $response = 'Browse the colection for all genres';
-        }
-
-        return new Response($response);
+        return $this->render('vinyl/browse.html.twig',[
+            'genre' => $genre
+        ]);
     }
 }
